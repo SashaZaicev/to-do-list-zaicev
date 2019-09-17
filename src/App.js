@@ -12,7 +12,7 @@ class App extends Component {
             {id: 3, title: "ReactJS", isDone: false, priority: "medium"},
             {id: 4, title: "Patterns", isDone: true, priority: "high"},
         ],
-        filterValue: "Active",
+        filterValue: "All",
     };
 
     addTask = (newText) => {
@@ -25,15 +25,45 @@ class App extends Component {
         this.setState({
             tasks: newTasks
         });
+    };
+    onFilterChanged = (newFilterValue) => {
+        this.setState({
+            filterValue: newFilterValue
+        })
     }
-
+    onTaskStatusChanged = (task, isDone)=>{
+        let newTasks = this.state.tasks.map( t => {
+            if (t != task) {
+                return t;
+            }
+            else{
+                return {...t, isDone: isDone}
+            }
+        })
+        this.setState({
+            tasks: newTasks
+        })
+}
     render() {
         return (
             <div className="App">
                 <div className="todoList">
                     <TodoListHeader addTask={this.addTask}/>
-                    <TodoListTasks tasks={this.state.tasks}/>
-                    <TodoListFooter filterValue={this.state.filterValue}/>
+                    <TodoListTasks onTaskStatusChanged={this.onTaskStatusChanged}
+                        tasks={this.state.tasks.filter(t => {
+                        switch (this.state.filterValue) {
+                            case "All":
+                                return true;
+                            case "Active":
+                                return t.isDone === false;
+                            default :
+                                return t.isDone === true;
+                        }
+                    })}/>
+
+
+                    <TodoListFooter onFilterChanged={this.onFilterChanged}
+                                    filterValue={this.state.filterValue}/>
                 </div>
             </div>
         );
