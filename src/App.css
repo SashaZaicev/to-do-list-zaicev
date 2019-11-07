@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.error {
+  border-color: red;
+}
 .todoList {
   display: inline-block;
   text-align: left;

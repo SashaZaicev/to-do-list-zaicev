@@ -3,6 +3,7 @@ import React from 'react';
 class TodoListFooter extends React.Component {
     state = {
         isHidden: false,
+
     };
      onShowFiltersClick = () => {this.setState({isHidden:true})}
      onHideFiltersClick = () => {this.setState({isHidden:false})}
