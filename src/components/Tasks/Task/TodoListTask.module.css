@@ -1,0 +1,4 @@
+.todoList-task.done{
+    color: red;
+    opacity: 0.5;
+}

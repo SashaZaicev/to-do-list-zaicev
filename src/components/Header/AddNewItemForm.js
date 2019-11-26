@@ -2,7 +2,7 @@ import React from 'react';
 import './TodoListHeader.module.css';
 
 
-class TodoListHeader extends React.Component {
+class AddNewItemForm extends React.Component {
     state = {
         error: false,
         title: '',
@@ -18,7 +18,7 @@ class TodoListHeader extends React.Component {
             title: e.currentTarget.value
         })
     }
-    onAddTaskClick = () => {
+    onAddItemClick = () => {
 
         let newText = this.state.title;
         this.state.title = "";
@@ -26,35 +26,35 @@ class TodoListHeader extends React.Component {
             this.setState({error: true})
         } else {
             this.setState({error: false})
-            this.props.addTask(newText)
+            this.props.addItem(newText)
         }
 
     };
     onButtonPress = (e) => {
         if (e.key === "Enter") {
-            this.onAddTaskClick()
+            this.onAddItemClick()
         }
     }
+
 
     render = () => {
         let classErrorBorder = this.state.error === true ? "error" : " ";
         return (
-            <div className="todoList-header">
-                <h3 className="todoList-header__title"> What to Learn</h3>
+            <>
                 <div className="todoList-newTaskForm">
                     <input className={classErrorBorder}
                            onKeyPress={this.onButtonPress}
                            type="text"
-                           placeholder="New task name"
+                           placeholder="New item name"
                            onChange={this.editTitleField}
                            value={this.state.title}
                     />
-                    <button onClick={this.onAddTaskClick}>Add</button>
+                    <button onClick={this.onAddItemClick}>Add</button>
                 </div>
-            </div>
+            </>
         );
     }
 
 }
 
-export default TodoListHeader;
+export default AddNewItemForm;

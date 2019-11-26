@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+display: flex;
+  flex-direction: row;
 }
 .error {
   border-color: red;
@@ -7,6 +8,7 @@
 .todoList {
   display: inline-block;
   text-align: left;
+  width: 300px;
 }
 .filter-active {
   background-color: blue ;
@@ -27,7 +29,10 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.todoList-task.done{
+  color: red;
+  opacity: 0.5;
+}
 .App-link {
   color: #61dafb;
 }
