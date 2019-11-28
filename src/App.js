@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./components/Header/AddNewItemForm";
+import axios from "axios";
 
 class App extends Component {
     nextTaskId = 0;
@@ -23,6 +24,15 @@ class App extends Component {
         this.restoreState()
     }
     restoreState = () => {
+        let state = this.state;
+
+        axios.get("https://social-network.samuraijs.com/api/1.0/todo-lists", {withCredentials: true})
+            .then(res => {
+                debugger
+                console.log(res.data);
+            });
+    }
+    __restoreState = () => {
         let state = {
             todolists: []
         }
