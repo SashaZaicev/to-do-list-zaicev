@@ -12,7 +12,6 @@ const SET_TODOLISTS = "TodoList/Reducer/SET_TODOLISTS";
 const initialState = {
     "todolists": [],
 }
-
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODOLIST:
