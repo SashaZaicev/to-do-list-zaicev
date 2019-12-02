@@ -3,33 +3,29 @@ import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./components/Header/AddNewItemForm";
 import axios from "axios";
+import instance, {api} from "./api/api";
+import {connect} from "react-redux";
+import {addTodolistAC, deleteTaskAC, deleteTodolistAC, setTodolistsAC, updateTodolistTitleAC} from "./reducers/reducer";
 
 class App extends Component {
-    nextTaskId = 0;
+    // nextTaskId = 0;
     state = {
-        todolists: [
-            // {title: "What to learn?"},
-            // {title: "Week tasks"},
-            // {title: "Day of the dead"},
-            // {id: 2, title: "JS", isDone: false, priority: "low"},
-            // {id: 3, title: "ReactJS", isDone: false, priority: "medium"},
-            // {id: 4, title: "Patterns", isDone: true, priority: "high"},
-        ],
+        todolists: [],
     };
     saveState = () => {
         let stateAsString = JSON.stringify(this.state);
         localStorage.setItem("our-state" + this.props.id, stateAsString)
     }
+
     componentDidMount() {
         this.restoreState()
     }
-    restoreState = () => {
-        let state = this.state;
 
-        axios.get("https://social-network.samuraijs.com/api/1.0/todo-lists", {withCredentials: true})
+    restoreState = () => {
+        api.getTodolists()
             .then(res => {
-                debugger
-                console.log(res.data);
+                this.props.setTodolists(res.data)
+                // console.log(res.data);
             });
     }
     __restoreState = () => {
@@ -42,22 +38,20 @@ class App extends Component {
             this.setState(state)
         }
     }
-    addTodoList = (title) => {debugger
-        let newTodoList = {
-            id: this.nextTaskId,
-            title: title,
-        };
-        this.nextTaskId++;
-        let newTodolists = [...this.state.todolists, newTodoList];
-        this.setState({
-            todolists: newTodolists
-        }, () => {
-            this.saveState();
-        });
+    addTodoList = (title) => {
+        api.createTodolist(title)
+            .then(res => {
+                let todolist = res.data.data.item;
+                this.props.addTodolist(todolist);
+            })
     }
+
+
     render = () => {
 
-        const todolists = this.state.todolists.map(tl => <TodoList id={tl.id} title={tl.title}/>)
+        const todolists = this.props
+            .todolists
+            .map(tl => <TodoList id={tl.id} title={tl.title} tasks={tl.tasks}/>)
         return (
             <>
                 <div>
@@ -71,4 +65,27 @@ class App extends Component {
     }
 }
 
-export default App;
+let mstp = (state) => {
+    return {
+        todolists: state.todolists
+    }
+};
+let mdtp = (dispatch) => {
+
+    return {
+        addTodolist: (newTodoList) => {
+            const action =
+                addTodolistAC(newTodoList)
+            dispatch(action)
+        },
+
+        setTodolists(todolists) {
+            const action =
+                setTodolistsAC(todolists)
+            dispatch(action)
+        }
+
+    }
+}
+const ConnectedApp = connect(mstp, mdtp)(App)
+export default ConnectedApp;

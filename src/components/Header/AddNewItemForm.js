@@ -22,6 +22,7 @@ class AddNewItemForm extends React.Component {
 
         let newText = this.state.title;
         this.state.title = "";
+
         if (newText === "") {
             this.setState({error: true})
         } else {
