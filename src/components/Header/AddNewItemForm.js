@@ -1,5 +1,5 @@
 import React from 'react';
-import './TodoListHeader.module.css';
+import s from './TodoListHeader.module.css';
 
 
 class AddNewItemForm extends React.Component {
@@ -41,8 +41,7 @@ class AddNewItemForm extends React.Component {
     render = () => {
         let classErrorBorder = this.state.error === true ? "error" : " ";
         return (
-            <>
-                <div className="todoList-newTaskForm">
+                <div className={s.newTaskForm}>
                     <input className={classErrorBorder}
                            onKeyPress={this.onButtonPress}
                            type="text"
@@ -52,7 +51,6 @@ class AddNewItemForm extends React.Component {
                     />
                     <button onClick={this.onAddItemClick}>Add</button>
                 </div>
-            </>
         );
     }
 

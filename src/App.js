@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./components/Header/AddNewItemForm";
-import axios from "axios";
-import instance, {api} from "./api/api";
+import {api} from "./api/api";
 import {connect} from "react-redux";
-import {addTodolistAC, deleteTaskAC, deleteTodolistAC, setTodolistsAC, updateTodolistTitleAC} from "./reducers/reducer";
+import {addTodolistAC, setTodolistsAC} from "./reducers/reducer";
 
 class App extends Component {
     // nextTaskId = 0;

@@ -1,5 +1,6 @@
 import React from 'react';
-import './TodoListHeader.module.css';
+import s from './TodoListHeader.module.css';
+import im from '../../img/deleteButton.png'
 
 
 class TodoListTitle extends React.Component {
@@ -23,15 +24,19 @@ class TodoListTitle extends React.Component {
 
     render = () => {
         return (
-            <>
-                {
-                    this.state.editMode
-                        ? <input value={this.state.title} autoFocus={true} onBlur={this.deactivateEditMode} onChange={this.onTitleChanged}/>
-                        : <h3 className="todoList-header__title" onClick={this.activateEditMode}>{this.props.title}
-                            <span> <button onClick={this.props.onDelete}>X</button></span>
-                        </h3>
-                }
-            </>
+                <div className={'displayFlex'}>
+                    {
+                        this.state.editMode
+                            ? <input value={this.state.title} autoFocus={true} onBlur={this.deactivateEditMode}
+                                     onChange={this.onTitleChanged}/>
+                            : <h3 className={s.title} onClick={this.activateEditMode}>{this.props.title}
+
+                            </h3>
+                    }
+                    <img src={im} className={s.xButton} onClick={this.props.onDelete}/>
+                    {/*// <span className={s.xButton}>*/}
+                    {/*//      <button onClick={this.props.onDelete}>X</button></span>}*/}
+                </div>
         );
     }
 }

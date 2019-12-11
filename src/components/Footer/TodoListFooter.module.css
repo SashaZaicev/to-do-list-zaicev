@@ -2,3 +2,9 @@
 .error {
      border-color: red;
  }
+.footer_menu {
+    text-align: center;
+}
+.footer_menu button {
+    background: rgba(255, 255, 255, 0);
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./TodoListTasks.module.css"
+import s from "./TodoListTasks.module.css"
 import TodoListTask from "./Task/TodoListTask";
 
 class TodoListTasks extends React.Component {
@@ -12,7 +12,7 @@ class TodoListTasks extends React.Component {
                           deleteTask={this.props.deleteTask}
             />,)
         return (
-            <div className="todoList-tasks">
+            <div className={s.todoList_tasks}>
                 {tasksElements}
             </div>
         );

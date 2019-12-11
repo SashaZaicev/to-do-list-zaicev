@@ -8,13 +8,42 @@
     border-color: red;
 }
 
+.todoList-task.done {
+    /*color: red;*/
+    opacity: 0.5;
+}
+
+.displayFlex {
+    display: flex;
+}
+
+.App div.todoList:nth-child(even) {
+    box-shadow: 5px 5px 8px #66615b;
+    background-image: url("./img/leaf-3155438_192022.jpg");
+    background-size: 100% 100%;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: #e86d06;
+
+}
+
+.App div.todoList:nth-child(odd) {
+    box-shadow: 5px 5px 8px #b9b9b9;
+    background-image: url("./img/paper-1990111_1920.jpg");
+    background-size: 100% 100%;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: #009999;
+}
+
 .todoList {
+    font-weight: bold;
     display: inline-block;
     text-align: left;
     width: 300px;
-    background: #afb7a7;
     margin: 5px;
     padding: 10px;
+    color: #444;
 }
 
 .filter-active {
@@ -37,7 +66,9 @@
     font-size: calc(10px + 2vmin);
     color: white;
 }
-
+.centerEl {
+    text-align: center;
+}
 
 .App-link {
     color: #61dafb;
@@ -51,3 +82,5 @@
         transform: rotate(360deg);
     }
 }
+
+

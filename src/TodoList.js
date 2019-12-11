@@ -14,6 +14,7 @@ import {
     updateTaskAC,
     updateTodolistTitleAC
 } from "./reducers/reducer";
+import s from "./components/Tasks/Task/TodoListTask.module.css";
 
 class TodoList extends Component {
     // nextTaskId = 0;
@@ -103,7 +104,6 @@ class TodoList extends Component {
     render() {
         let {tasks = []} = this.props;
         return (
-            <div className="App">
                 <div className="todoList">
                     <div className="todoList-header">
                         <TodoListTitle title={this.props.title}
@@ -112,6 +112,7 @@ class TodoList extends Component {
                         <AddNewItemForm addItem={this.addTask}/>
                     </div>
                     {/*<TodoListHeader title={this.props.title} addTask={this.addTask}/>*/}
+                    <div className='centerEl'>TASKS: </div>
                     <TodoListTasks changeStatus={this.changeStatus}
                                    changeTitle={this.changeTitle}
                                    deleteTask={this.deleteTask}
@@ -120,9 +121,9 @@ class TodoList extends Component {
                                            case "All":
                                                return true;
                                            case "Active":
-                                               return t.isDone === false;
+                                               return t.completed === false;
                                            default :
-                                               return t.isDone === true;
+                                               return t.completed === true;
                                        }
                                    })}/>
 
@@ -130,7 +131,6 @@ class TodoList extends Component {
                     <TodoListFooter onFilterChanged={this.changeFilter}
                                     filterValue={this.state.filterValue}/>
                 </div>
-            </div>
         );
     }
 }

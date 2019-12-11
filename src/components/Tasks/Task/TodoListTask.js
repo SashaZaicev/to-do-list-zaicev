@@ -1,5 +1,5 @@
 import React from 'react';
-import  './TodoListTask.module.css'
+import s from './TodoListTask.module.css'
 
 class TodoListTask extends React.Component {
     state = {
@@ -7,7 +7,7 @@ class TodoListTask extends React.Component {
         title: this.props.task.title
     };
 
-    onIsDoneChanged = (e) => {debugger
+    onIsDoneChanged = (e) => {
         let status = e.currentTarget.checked ? 2 : 0;
         this.props.changeStatus(this.props.task.id, status);
     }
@@ -23,36 +23,48 @@ class TodoListTask extends React.Component {
         this.props.changeTitle(this.props.task.id, this.state.title);
         this.setState({editMode: false});
     }
-    onDeleteTask=()=> {
+    onDeleteTask = () => {
         this.props.deleteTask(this.props.task.id)
     }
-    render = (props) => {debugger
-        let taskOpacityCSS = this.props.task.completed ? "todoList-task done" : "todoList-task"
+    render = (props) => {
+        let taskOpacityCSS = this.props.task.status === 2 ? "todoList-task done" : "todoList-task";
+
         let priority = "";
         switch (this.props.task.priority) {
-            case 0: priority = "Low"; break;
-            case 1: priority = "Middle"; break;
-            case 2: priority = "High"; break;
-            case 3: priority = "Urgently"; break;
-            case 4: priority = "Later"; break;
+            case 0:
+                priority = "Low";
+                break;
+            case 1:
+                priority = "Middle";
+                break;
+            case 2:
+                priority = "High";
+                break;
+            case 3:
+                priority = "Urgently";
+                break;
+            case 4:
+                priority = "Later";
+                break;
         }
 
         return (
             <div className={taskOpacityCSS}>
-                <input type="checkbox" checked={this.props.task.status == 2}
+                <input type="checkbox" checked={this.props.task.status === 2}
                        onChange={this.onIsDoneChanged}
                 />
                 {this.state.editMode
-                    ? <input  onChange={this.onTitleChanged}
-                              onBlur={this.deactivatedEditMode}
-                              value={this.state.title}
-                              autoFocus={true}/>
+                    ? <input onChange={this.onTitleChanged}
+                             onBlur={this.deactivatedEditMode}
+                             value={this.state.title}
+                             autoFocus={true}/>
                     : < span onClick={this.activatedEditMode}>
                         {/*<span>ID: {this.props.task.id} - </span>*/}
-                        <span>Task: {this.props.task.title}, </span>
+                        <span>{this.props.task.title}, </span>
                 <span>priority: {priority}</span>
-                        <span> <button onClick={this.onDeleteTask}>X</button></span>
+
                 </span>}
+                <span><button className={s.deleteBTNtask} onClick={this.onDeleteTask}>X</button></span>
 
 
             </div>
