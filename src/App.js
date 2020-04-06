@@ -50,11 +50,11 @@ class App extends Component {
 
         const todolists = this.props
             .todolists
-            .map(tl => <TodoList id={tl.id} title={tl.title} tasks={tl.tasks}/>)
+            .map(tl => <TodoList key={`${tl.id + tl.title} `} id={tl.id} title={tl.title} tasks={tl.tasks}/>)
         return (
             <>
                 <div>
-                    <AddNewItemForm addItem={this.addTodoList}/>
+                    <AddNewItemForm  addItem={this.addTodoList}/>
                 </div>
                 <div className="App">
                     {todolists}

@@ -58,11 +58,13 @@ class TodoList extends Component {
             })
     }
     changeFilter = (newFilterValue) => {
-        this.setState( {
+        this.setState({
             filterValue: newFilterValue
-        }, () => { this.saveState(); });
+        }, () => {
+            this.saveState();
+        });
     }
-    changeTask = (taskId, obj) =>  {
+    changeTask = (taskId, obj) => {
 
         this.props.tasks.forEach(t => {
             if (t.id === taskId) {
@@ -104,33 +106,34 @@ class TodoList extends Component {
     render() {
         let {tasks = []} = this.props;
         return (
-                <div className="todoList">
-                    <div className="todoList-header">
-                        <TodoListTitle title={this.props.title}
-                                       onDelete={this.deleteTodolist}
-                                       updateTitle={this.updateTitle}/>
-                        <AddNewItemForm addItem={this.addTask}/>
-                    </div>
-                    {/*<TodoListHeader title={this.props.title} addTask={this.addTask}/>*/}
-                    <div className='centerEl'>TASKS: </div>
-                    <TodoListTasks changeStatus={this.changeStatus}
-                                   changeTitle={this.changeTitle}
-                                   deleteTask={this.deleteTask}
-                                   tasks={tasks.filter(t => {
-                                       switch (this.state.filterValue) {
-                                           case "All":
-                                               return true;
-                                           case "Active":
-                                               return t.completed === false;
-                                           default :
-                                               return t.completed === true;
-                                       }
-                                   })}/>
-
-
-                    <TodoListFooter onFilterChanged={this.changeFilter}
-                                    filterValue={this.state.filterValue}/>
+            <div className="todoList">
+                <div className="todoList-header">
+                    <TodoListTitle title={this.props.title}
+                                   onDelete={this.deleteTodolist}
+                                   updateTitle={this.updateTitle}/>
+                    <AddNewItemForm addItem={this.addTask}/>
                 </div>
+                {/*<TodoListHeader title={this.props.title} addTask={this.addTask}/>*/}
+                <div className='centerEl'>TASKS:</div>
+                <TodoListTasks key={this.props.id}
+                               changeStatus={this.changeStatus}
+                               changeTitle={this.changeTitle}
+                               deleteTask={this.deleteTask}
+                               tasks={tasks.filter(t => {
+                                   switch (this.state.filterValue) {
+                                       case "All":
+                                           return true;
+                                       case "Active":
+                                           return t.status === 0;
+                                       default :
+                                           return t.status === 2;
+                                   }
+                               })}/>
+
+
+                <TodoListFooter onFilterChanged={this.changeFilter}
+                                filterValue={this.state.filterValue}/>
+            </div>
         );
     }
 }

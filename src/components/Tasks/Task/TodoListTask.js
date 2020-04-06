@@ -8,6 +8,7 @@ class TodoListTask extends React.Component {
     };
 
     onIsDoneChanged = (e) => {
+        debugger
         let status = e.currentTarget.checked ? 2 : 0;
         this.props.changeStatus(this.props.task.id, status);
     }
