@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/to-do-list-zaicev/static/css/main.d0571738.chunk.css",
+    "main.js": "/to-do-list-zaicev/static/js/main.ca02fb0a.chunk.js",
+    "main.js.map": "/to-do-list-zaicev/static/js/main.ca02fb0a.chunk.js.map",
+    "runtime-main.js": "/to-do-list-zaicev/static/js/runtime-main.8dee4a54.js",
+    "runtime-main.js.map": "/to-do-list-zaicev/static/js/runtime-main.8dee4a54.js.map",
+    "static/js/2.00286792.chunk.js": "/to-do-list-zaicev/static/js/2.00286792.chunk.js",
+    "static/js/2.00286792.chunk.js.map": "/to-do-list-zaicev/static/js/2.00286792.chunk.js.map",
+    "index.html": "/to-do-list-zaicev/index.html",
+    "precache-manifest.903548752ed6493749749774c8fb93c1.js": "/to-do-list-zaicev/precache-manifest.903548752ed6493749749774c8fb93c1.js",
+    "service-worker.js": "/to-do-list-zaicev/service-worker.js",
+    "static/css/main.d0571738.chunk.css.map": "/to-do-list-zaicev/static/css/main.d0571738.chunk.css.map",
+    "static/js/2.00286792.chunk.js.LICENSE.txt": "/to-do-list-zaicev/static/js/2.00286792.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/to-do-list-zaicev/static/media/drew-beamer-unsplash.7d8fa4d6.jpg",
+    "static/media/App.css": "/to-do-list-zaicev/static/media/paper-1990111_1920.ead6fa32.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8dee4a54.js",
+    "static/js/2.00286792.chunk.js",
+    "static/css/main.d0571738.chunk.css",
+    "static/js/main.ca02fb0a.chunk.js"
+  ]
+}
